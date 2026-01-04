@@ -126,7 +126,6 @@ sudo python3 run_ids.py
 
 ### Screenshots
 
-*Add your screenshots to `docs/screenshots/` folder*
 
 ![Dashboard Main](docs/screenshots/dashboard.png)
 ![Alert Distribution](docs/screenshots/alerts.png)
@@ -427,8 +426,8 @@ Unauthorized network monitoring may be illegal in your jurisdiction and could re
 
 **⭐ Star this repo if you find it useful! ⭐**
 
-Made with ❤️ and 🔐 by [Arman Bin Tahir](https://github.com/Arman-1337)
-
+Made by [Arman Bin Tahir](https://github.com/Arman-1337)
+THESE BETTER HELP ME 
 **Building a safer internet, one packet at a time.**
 
 </div>
