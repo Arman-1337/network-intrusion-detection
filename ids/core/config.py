@@ -1,7 +1,7 @@
 """
 IDS Configuration Settings
 """
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List
 import os
 
@@ -10,8 +10,8 @@ class IDSConfig:
     """IDS configuration settings."""
     
     # Network Settings
-    INTERFACE: str = "Wi-Fi"  # Change to your network interface
-    PROMISCUOUS_MODE: bool = False  # Set True for full packet capture (needs admin)
+    INTERFACE: str = None  # Auto-detect interface
+    PROMISCUOUS_MODE: bool = False
     
     # Detection Settings
     ENABLE_ANOMALY_DETECTION: bool = True
@@ -34,32 +34,21 @@ class IDSConfig:
     # Dashboard Settings
     DASHBOARD_HOST: str = "127.0.0.1"
     DASHBOARD_PORT: int = 5000
-    DASHBOARD_UPDATE_INTERVAL: int = 5  # seconds
+    DASHBOARD_UPDATE_INTERVAL: int = 5
     
     # Data Retention
     MAX_PACKETS_IN_MEMORY: int = 10000
     MAX_ALERTS_IN_MEMORY: int = 1000
     
-    # Suspicious Ports (commonly attacked)
-    SUSPICIOUS_PORTS: List[int] = [
-        21,    # FTP
-        22,    # SSH
-        23,    # Telnet
-        25,    # SMTP
-        3306,  # MySQL
-        3389,  # RDP
-        5432,  # PostgreSQL
-        27017, # MongoDB
-    ]
+    # Suspicious Ports (using field with default_factory)
+    SUSPICIOUS_PORTS: List[int] = field(default_factory=lambda: [
+        21, 22, 23, 25, 3306, 3389, 5432, 27017
+    ])
     
-    # Known Attack Patterns
-    ATTACK_SIGNATURES: List[str] = [
-        "union select",
-        "' or '1'='1",
-        "../etc/passwd",
-        "<script>",
-        "cmd.exe",
-        "/bin/bash",
-    ]
+    # Attack Signatures (using field with default_factory)
+    ATTACK_SIGNATURES: List[str] = field(default_factory=lambda: [
+        "union select", "' or '1'='1", "../etc/passwd",
+        "<script>", "cmd.exe", "/bin/bash"
+    ])
 
 config = IDSConfig()
